@@ -1,34 +1,21 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3001;
-require("dotenv").config();  
-
-const { MongoClient } = require("mongodb");
-const mongoClient = new MongoClient(process.env.MONGO_DB_CONNECTION_STRING);
-
-let testCollection;
-
-mongoClient.connect().then(_ => {
-    const db = mongoClient.db("test");
-    testCollection = db.collection("test");
-}).catch(error => {
-    console.log(error);
-})
+const { connectToMongoDb, getTestCollection } = require("./client/database/database");
+const logingApi = require("./client/routes/logingApi");
 
 app.use(express.json());
+connectToMongoDb();
 
-app.get("/api/test", (_, response) => {
-    testCollection.find().toArray().then((result) => {
-        response.json(result);
-    });
-});
+app.use("/api", logingApi);
 
 app.post("/api/test", (request, response) => {
-    testCollection.insertOne(request.body).then((_) => {
-        response.json();
-    });
+  const testCollection = getTestCollection();
+  testCollection.insertOne(request.body).then(() => {
+    response.json();
+  });
 });
 
 app.listen(port, () => {
-  console.log(`listening on port ${port}`)
-})
+  console.log(`Listening on port ${port}`);
+});
