@@ -1,7 +1,7 @@
-// import { login } from "./login";
-// import { signup } from "./signup";
 
-function renderFrontPage() {
+import { renderSignupForm } from "./renderSignup.js";
+import { renderLogin } from "./renderLogin.js";
+export function renderFrontPage() {
   const page = document.getElementById("page");
 
   const div = document.createElement("div");
@@ -18,14 +18,15 @@ function renderFrontPage() {
 
   const signupBtn = document.createElement("button");
   signupBtn.className = "signupBtn";
+  signupBtn.textContent = " signUp" 
   const loginBtn = document.createElement("button");
   loginBtn.className = "loginBtn";
+  loginBtn.textContent = "login"
 
-  signupBtn.addEventListener("click", () => renderSignup()); //name for sign up function
+  signupBtn.addEventListener("click", () => renderSignupForm()); //name for sign up function
   loginBtn.addEventListener("click", () => renderLogin()); //name for log in function
 
   div2.append(signupBtn, loginBtn);
   div.append(logo, div2);
   page.appendChild(div);
 }
-renderFrontPage();
