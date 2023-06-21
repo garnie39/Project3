@@ -16,4 +16,4 @@ function signUpForm() {
     page.appendChild(form)
 }
 
-console.log('sign up form working');
+console.log('sign up form working'); 
