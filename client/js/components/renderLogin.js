@@ -1,10 +1,7 @@
 import { renderFrontPage } from "./frontPage.js";
 
-
-
-
 export const renderLogin = () => {
-    const page = document.getElementById("page");
+  const page = document.getElementById("page");
   const loginDialog = document.createElement("dialog");
   page.appendChild(loginDialog);
   loginDialog.showModal();
@@ -12,7 +9,6 @@ export const renderLogin = () => {
   const loginDialogForm = document.createElement("form");
   loginDialogForm.innerHTML = `
  
-   
       <label for="username">Username:</label>
       <input type="text" id="username" name="username" required>
 
@@ -20,7 +16,6 @@ export const renderLogin = () => {
       <input type="password" id="password" name="password" required>
 
       <input type="submit">
-  
   `;
   
   const closeDialog = document.createElement("button");
@@ -31,7 +26,6 @@ export const renderLogin = () => {
   
   loginDialog.appendChild(loginDialogForm);
   loginDialog.appendChild(closeDialog);
- 
  
   loginDialogForm.addEventListener("submit", (event) => {
     event.preventDefault();

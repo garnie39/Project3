@@ -1,4 +1,3 @@
-
 import { renderSignupForm } from "./renderSignup.js";
 import { renderLogin } from "./renderLogin.js";
 export function renderFrontPage() {

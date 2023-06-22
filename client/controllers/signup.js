@@ -4,11 +4,11 @@ const {getUserCollection} = require("../database/database");
 exports.signup = async (request, response) =>{
     try{
     const userCollection = getUserCollection();
-    const {name, password, email} =  request.body;
+    const {username, password, email} =  request.body;
 
     //Perform passwordhash for security
 
-     userCollection.insertOne({name, password, email})
+     userCollection.insertOne({username, password, email})
      .then(()=>{
       response.json()
       console.log("User signup was successsful")
