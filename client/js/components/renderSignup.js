@@ -13,13 +13,13 @@ export const renderSignupForm = () => {
 
   form.innerHTML = `
   <label for="username">Username:</label>
-  <input type="text" name="username" id="username"/>
+  <input type="text" name="username" id="username" required/>
 
   <label for="email">Email:</label>
-  <input type="email" name="email" id="email"/>
+  <input type="email" name="email" id="email" required/>
 
   <label for="password">Password:</label>
-  <input type="text" name="password" id="password"/>
+  <input type="text" name="password" id="password" required/>
 
 
   <input id="submitSignup" type="submit">
