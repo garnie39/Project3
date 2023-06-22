@@ -31,9 +31,6 @@ export const renderLogin = () => {
     loginDialog.close();
     page.removeChild(loginDialog);
   });
-  
-  loginDialog.appendChild(loginDialogForm);
-  loginDialog.appendChild(closeDialog);
 
   loginDialog.append(loginDialogForm, closeDialog);
 
