@@ -11,13 +11,13 @@ export const renderLogin = () => {
   loginDialogForm.className = "loginDialogForm";
   loginDialogForm.innerHTML = `
  
-   
       <label for="username">Username:</label>
       <input type="text" id="username" name="username" required>
 
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" required>
 
+      <input type="submit">
       <input id="submitBtn" type="submit">
   
   `;
@@ -31,6 +31,9 @@ export const renderLogin = () => {
     loginDialog.close();
     page.removeChild(loginDialog);
   });
+  
+  loginDialog.appendChild(loginDialogForm);
+  loginDialog.appendChild(closeDialog);
 
   loginDialog.append(loginDialogForm, closeDialog);
 
