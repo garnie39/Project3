@@ -1,5 +1,3 @@
-const pageElement = document.getElementById("page");
-
 export const renderSignupForm = () => {
   const pageElement = document.getElementById("page");
   pageElement.innerHTML = signupFormHTML();
