@@ -20,8 +20,10 @@ export const renderSignupForm = () => {
   <label for="password">Password:</label>
   <input type="text" name="password" id="password"/>
 
+
   <input id="submitSignup" type="submit">
   `;
+
 
   const closeDialogSignup = document.createElement("p");
   closeDialogSignup.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" fill="currentColor" class="signupCloseBtn" viewBox="0 0 16 16">
@@ -48,6 +50,7 @@ export const renderSignupForm = () => {
     axios
       .post("/api/user", user)
       .then((_) => {
+
         renderFrontPage();
       })
       .catch((error) => {
