@@ -1,5 +1,6 @@
 import { renderFrontPage } from "./frontPage.js";
 
+
 export const renderSignupForm = () => {
   const pageElement = document.getElementById("page");
   const form = document.createElement("form");
@@ -48,7 +49,7 @@ export const renderSignupForm = () => {
     };
 
     axios
-      .post("/api/user", user)
+      .post("/api/user", data)
       .then((_) => {
 
         renderFrontPage();
