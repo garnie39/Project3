@@ -5,7 +5,7 @@ const { signupFormHTML } = require("../js/forms/signupForm");
 
 router.post("/user", userSignup.signup);
 router.get("/signup", (request, response)=>{
-    const signupForm = signupFormHTML()
+    // const signupForm = signupFormHTML()
     response.send(`<h2>Signup Form</h2>${signupForm}`)
 })
 module.exports = router;
