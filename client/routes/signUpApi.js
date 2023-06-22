@@ -1,50 +1,66 @@
 const express = require("express");
 const router = express.Router();
-const {getUserCollection} = require("../database/database");
-const bcrypt = require('bcrypt');
+const { getUserCollection } = require("../database/database");
+const bcrypt = require("bcrypt");
 
 // const userSignup = require("../controllers/signup");
 // const { signupFormHTML } = require("../js/forms/signupForm");
 
-router.post("/user", (request, response) => {
-    const userCollection = getUserCollection();
-    const { name, email, password } = request.body;
-
-    // Perform password hash for security
-    const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync());
-
-    if (!name || !email || !password) {
-        response.status(400).json({ message: "missing mandatory fields" });
-        return;
-    }
-
-    if (password.length < 8) {
-        response.status(400).json({ message: "password must be 8 characters or more" });
-        return;
-    }
-
-    userCollection.findOne({ email: email }).then((user) => {
-        if (user) {
-            response.status(400).json({ message: `user with the email ${email} already exists` });
-            return;
-        }
-
-        userCollection
-            .insertOne({
-                name: name,
-                email: email,
-                passwordHash: passwordHash
-            })
-            .then(() => {
-                response.json({ message: "User signup was successful" });
-                console.log("User signup was successful");
-            })
-            .catch((err) => {
-                response.status(500).json({ message: "Internal Server Error" });
-            });
+router.get("/", (req, res) => {
+  userCollection
+    .find()
+    .toArray()
+    .then((response) => {
+      res.json({ users: response });
     });
 });
 
+router.post("/user", (request, response) => {
+  const userCollection = getUserCollection();
+  //   console.log(userCollection);
+  // Perform password hash for security
+  const passwordHash = bcrypt.hashSync(
+    request.body.password,
+    bcrypt.genSaltSync()
+  );
+  //   console.log(request.body);
+
+  if (!request.body.username || !request.body.email || !request.body.password) {
+    response.status(400).json({ message: "missing mandatory fields" });
+    return;
+  }
+
+  if (request.body.password.length < 8) {
+    response
+      .status(400)
+      .json({ message: "password must be 8 characters or more" });
+    return;
+  }
+
+  userCollection.findOne({ email: request.body.email }).then((user) => {
+    if (user) {
+      response.status(400).json({
+        message: `user with the email ${request.body.email} already exists`,
+      });
+      return;
+    }
+    userCollection
+      .insertOne({
+        username: request.body.username,
+        email: request.body.email,
+        passwordHash: passwordHash,
+      })
+      .then((_) => {
+        response.json({ message: "User signup was successful" });
+        //   console.log("User signup was successful");
+        return;
+      })
+      .catch((err) => {
+        response.status(500).json({ message: "Internal Server Error" });
+        return;
+      });
+  });
+});
 
 // router.get("/signup", (request, response)=>{
 //     // const signupForm = signupFormHTML()

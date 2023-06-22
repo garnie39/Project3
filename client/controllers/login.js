@@ -5,13 +5,12 @@ exports.login = async (request, response) => {
     const { username, password } = request.body;
 
     const userCollection = getUserCollection();
+    // console.log(userCollection);
     const user = await userCollection.findOne({ username: username });
 
     if (user && user.password === password) {
-    
-      console.log("User login was successsful")
+      console.log("User login was successsful");
     } else {
-      
       response.status(401).json({ error: "Invalid username or password" });
     }
   } catch (err) {
