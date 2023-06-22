@@ -30,5 +30,5 @@ export function renderFrontPage() {
 
   div2.append(signupBtn, loginBtn);
   div.append(logo, name, div2);
-  page.appendChild(div);
+  page.replaceChildren(div);
 }
