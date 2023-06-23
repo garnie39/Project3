@@ -1,4 +1,12 @@
-# README
+# Project 3: Catchy Calender
+
+[Manage your schedule](https://project-3-bc1x.onrender.com)
+
+## Project Description
+
+### Welcome Page with button for user to choose between sign up or log in:
+
+![alt text]()
 
 This is the [Express](https://expressjs.com) [Hello world](https://expressjs.com/en/starter/hello-world.html) example on [Render](https://render.com).
 
