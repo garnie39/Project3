@@ -43,7 +43,8 @@ export const renderLogin = () => {
     };
 
     axios.post("/api/login", userInfo).then(() => {
-      renderFrontPage();
+      renderHeader();
+      renderProfile();
     });
   });
 };

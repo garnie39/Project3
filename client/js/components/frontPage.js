@@ -1,5 +1,5 @@
-import { renderSignupForm } from "./renderSignup.js";
-import { renderLogin } from "./renderLogin.js";
+import { renderSignupForm } from "./signup.js";
+import { renderLogin } from "./login.js";
 export function renderFrontPage() {
   const page = document.getElementById("page");
 
