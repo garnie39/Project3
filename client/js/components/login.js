@@ -1,4 +1,5 @@
-import { renderFrontPage } from "./frontPage.js";
+import { renderHeader } from "./header.js";
+import { renderProfile } from "./profile.js";
 
 export const renderLogin = () => {
   const page = document.getElementById("page");
