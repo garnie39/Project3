@@ -1,20 +1,64 @@
-// export function renderHeader() {
-//     let name;
-//     axios.get('/api/session').then(response => {
-//         name = response.data.name;
-//         setHeaderHTML(name);
-//     }).catch((error) => {
-//         setHeaderHTML(undefined);
-//     })
-// }
+import { renderAddEvent } from "./addEvent";
+import { renderLogout } from "./logout";
 
-function setHeaderHtml(name) {
-    const header = document.getElementById('header');
-    header.innerHTML = `
+export function renderHeader() {
+  let name;
+  axios
+    .get("/api/session")
+    .then((response) => {
+      name = response.data.username;
+      setHeaderHTML(name);
+      setSideBar();
+    })
+    .catch((error) => {
+      setHeaderHTML(undefined);
+    });
+}
+
+function setHeaderHTML(name) {
+  const header = document.getElementById("header");
+  header.innerHTML = `
       <h1>Welcome</h1>
       <ul id="navList">
-        ${name ? `<li>Hello ${name}!</li><li id="addEvent">Add Event</li><li id="logout">Logout</li>` : ''}
-      </ul>`;
-  }
-  
-  
+            <li id="name">${name}!</li>
+            <li id="notification">Notification</li>
+            <li id="addFriends">Add Friend</li>
+            <li id="logout">Log Out</li>
+      </ul>
+      `;
+
+  document
+    .getElementById("notification")
+    .addEventListener("click", () => renderNotifacation());
+
+  document
+    .getElementById("friendsList")
+    .addEventListener("click", () => renderAddFriends());
+
+  document
+    .getElementById("logout")
+    .addEventListener("click", () => renderLogout());
+}
+
+function setSideBar() {
+  const sideBar = document.getElementById("side_bar");
+  sideBar.innerHTML = `
+    <ul id="sideNavList>
+      <li id="selectMonth">Select Month</li>
+      <li id="friendsList">Friend</li>
+      <li id="addEvents">Add Event</li>
+    </ul>
+      `;
+
+  document
+    .getElementById("selectMonth")
+    .addEventListener("click", () => renderMonth());
+
+  document
+    .getElementById("friendsList")
+    .addEventListener("click", () => renderFriendsList());
+
+  document
+    .getElementById("addEvents")
+    .addEventListener("click", () => renderAddEvent());
+}
