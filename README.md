@@ -5,8 +5,11 @@
 ## Project Description
 
 ### Welcome Page with button for user to choose between sign up or log in:
-
-![alt text]()
+![alt text](https://github.com/garnie39/Project3/blob/main/images/frontpage.png?raw=true)
+### Sign Up
+![alt text](https://github.com/garnie39/Project3/blob/main/images/signup.png?raw=true)
+### Log in
+![alt text](https://github.com/garnie39/Project3/blob/main/images/login.png?raw=true)
 
 This is the [Express](https://expressjs.com) [Hello world](https://expressjs.com/en/starter/hello-world.html) example on [Render](https://render.com).
 
