@@ -15,6 +15,7 @@ router.get("/", (_, response) => {
 
 // POST event
 router.post("/", (request, response) => {
+
   if (
     !request.body.eventname ||
     !request.body.startdate ||
@@ -30,6 +31,15 @@ router.post("/", (request, response) => {
     response.json();
   });
 });
+    console.log(request.body);
+    if (!request.body.eventname || !request.body.startdate || !request.body.invite || !request.body.enddate) {
+        response.status(400).json({ message: "eventname, startdate, enddate and invite are mandatory fields"});
+        return;
+    }
+    eventsCollection.insertOne(request.body).then((_) => {
+        response.json();
+    })
+})
 
 // DELETE event
 router.delete("/:id", (request, response) => {
