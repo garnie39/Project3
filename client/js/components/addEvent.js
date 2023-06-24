@@ -1,3 +1,5 @@
+
+
 export const renderAddEvent = () => {
   const page = document.getElementById("page");
   const addEventDialog = document.getElementById("dialog");
@@ -44,5 +46,11 @@ export const renderAddEvent = () => {
       enddate: formData.get("enddate"),
       invite: formData.get("invite"),
     };
+
+    axios.post("/api/addevent", data)
+    .then((_) => {
+
+    })
+
   });
 };
