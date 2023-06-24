@@ -2,26 +2,28 @@ export const renderAddEvent = () => {
   const page = document.getElementById("page");
   const addEventDialog = document.createElement("dialog");
   const form = document.createElement("form");
+
   addEventDialog.className = "addEventDialog";
-  page.appendChild(addEventDialog);
-  addEventDialog.showModal();
   form.className = "addEventForm";
 
+  page.appendChild(addEventDialog);
+  addEventDialog.showModal();
+
   form.innerHTML = `
-    <label for="timestamp">timestamp</label>
+    <label for="timestamp" hidden>timestamp</label>
     <input type="date" name="timestamp" id="timestamp" hidden/>
 
     <label for="eventname">Event name:</label>
-    <input type="text" name="eventname" id="eventname" required/>
+    <input type="text" name="eventname" id="eventname" required/><br>
 
     <label for="startdate">Start date:</label>
     <input type="date" name="startdate" id="startdate" required/><br>
 
     <label for="enddate">End date:</label>
-    <input type="date" name="enddate" id="enddate" required/>
+    <input type="date" name="enddate" id="enddate" required/><br>
 
     <label for="invite">Invite:</label>
-    <input type="text" name="invite" id="invite" required/>
+    <input type="text" name="invite" id="invite" required/><br>
 
     <input id="submitEventBtn" type="submit">
     `;
@@ -41,25 +43,27 @@ export const renderAddEvent = () => {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const formData = new FormData(form);
-    const todayTimeStamp = new Date()
+    const todayTimeStamp = new Date();
     console.log(todayTimeStamp);
+
     const data = {
       timestamp: todayTimeStamp,
       eventname: formData.get("eventname"),
       startdate: formData.get("startdate"),
       enddate: formData.get("enddate"),
-      invite: formData.get("invite"),
+      userJoin: formData.get("invite"),
     };
-    axios.post("/api/events", data)
-    .then((_) => {
-      fetchEvents();
-      console.log(data);
-    })
-    .catch((error) => {
-      console.log("Error adding event:", error);
-    });
+    axios
+      .post("/api/events", data)
+      .then((_) => {
+        fetchEvents();
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log("Error adding event:", error);
+      });
   });
-  
+
   // fetch and render the events when the dialog is opened
   addEventDialog.addEventListener("open", () => {
     fetchEvents();
