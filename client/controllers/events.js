@@ -2,9 +2,10 @@ const express = require("express");
 const router = express.Router();
 const { getEventCollection } = require("../database/database.js");
 
-const eventsCollection = getEventCollection();
+
 // GET events
 router.get("/", (_, response) => {
+const eventsCollection = getEventCollection();
   eventsCollection
     .find()
     .toArray()
@@ -15,7 +16,8 @@ router.get("/", (_, response) => {
 
 // POST event
 router.post("/", (request, response) => {
-
+    const eventsCollection = getEventCollection();
+    console.log(eventsCollection);
   if (
     !request.body.eventname ||
     !request.body.startdate ||
@@ -27,19 +29,16 @@ router.post("/", (request, response) => {
     });
     return;
   }
+  console.log(request.body);
+
+  if (!request.body.eventname || !request.body.startdate || !request.body.invite || !request.body.enddate) {
+      response.status(400).json({ message: "eventname, startdate, enddate and invite are mandatory fields"});
+      return;
+  }
   eventsCollection.insertOne(request.body).then((_) => {
-    response.json();
-  });
+      response.json();
+  })
 });
-    console.log(request.body);
-    if (!request.body.eventname || !request.body.startdate || !request.body.invite || !request.body.enddate) {
-        response.status(400).json({ message: "eventname, startdate, enddate and invite are mandatory fields"});
-        return;
-    }
-    eventsCollection.insertOne(request.body).then((_) => {
-        response.json();
-    })
-})
 
 // DELETE event
 router.delete("/:id", (request, response) => {
