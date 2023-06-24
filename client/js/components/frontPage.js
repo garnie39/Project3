@@ -1,8 +1,12 @@
 import { renderSignupForm } from "./signup.js";
 import { renderLogin } from "./login.js";
+
 export function renderFrontPage() {
   const page = document.getElementById("page");
-
+  const header = document.getElementById("header");
+  const sideBar = document.getElementById("side_bar");
+  header.textContent = "";
+  sideBar.textContent ="";
   const div = document.createElement("div");
   div.className = "frontPage";
   const logo = document.createElement("p");

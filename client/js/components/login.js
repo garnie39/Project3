@@ -1,6 +1,7 @@
 import { renderProfile } from "./profile.js";
 import { renderHeader } from "./header.js";
 
+
 export const renderLogin = () => {
   const page = document.getElementById("page");
   const loginDialog = document.createElement("dialog");
@@ -17,6 +18,7 @@ export const renderLogin = () => {
 
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" required>
+      <p id="loginError"></p>
 
       <input id="submitBtn" type="submit">
   
@@ -44,8 +46,14 @@ export const renderLogin = () => {
     };
 
     axios.post("/api/login", userInfo).then(() => {
+
       renderHeader();
       renderProfile();
+    })
+    .catch((error) => {
+      const errorMessage = error.response.data.error;
+      const loginErrorElement = document.getElementById("loginError"); 
+      loginErrorElement.textContent = errorMessage;
     });
   });
 };
