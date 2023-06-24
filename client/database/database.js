@@ -7,9 +7,9 @@ let testCollection;
 let userCollection;
 let eventCollection;
 
-const connectToMongoDb = async () => {
+const connectToMongoDb = () => {
   try {
-    await mongoClient
+    mongoClient
       .connect()
       .then((_) => {
         const db = mongoClient.db("project3");

@@ -41,8 +41,8 @@ export const renderAddEvent = () => {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const formData = new FormData(form);
-    const todayTimeStamp = Date.now().getTime()
-    
+    const todayTimeStamp = new Date()
+    console.log(todayTimeStamp);
     const data = {
       timestamp: todayTimeStamp,
       eventname: formData.get("eventname"),
