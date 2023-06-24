@@ -9,6 +9,9 @@ export const renderAddEvent = () => {
   form.className = "addEventForm";
 
   form.innerHTML = `
+    <label for="timestamp">timestamp</label>
+    <input type="date" name="timestamp" id="timestamp" hidden/>
+
     <label for="eventname">Event name:</label>
     <input type="text" name="eventname" id="eventname" required/>
 
@@ -39,23 +42,25 @@ export const renderAddEvent = () => {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const formData = new FormData(form);
-
+    const todayTimeStamp = Date.now().getTime()
+    
     const data = {
+      timestamp: todayTimeStamp,
       eventname: formData.get("eventname"),
       startdate: formData.get("startdate"),
       enddate: formData.get("enddate"),
       invite: formData.get("invite"),
     };
-
     axios.post("/api/events", data)
-      .then((_) => {
-        fetchEvents();
-      })
-      .catch((error) => {
-        console.log("Error adding event:", error);
-      });
+    .then((_) => {
+      fetchEvents();
+      console.log(data);
+    })
+    .catch((error) => {
+      console.log("Error adding event:", error);
+    });
   });
-
+  
   // fetch and render the events when the dialog is opened
   addEventDialog.addEventListener("open", () => {
     fetchEvents();
