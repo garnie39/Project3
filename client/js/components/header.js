@@ -1,6 +1,6 @@
 import { renderAddEvent } from "./addEvent.js";
 import { renderLogout } from "./logout.js";
-
+import { renderAddFriends } from "./addFriend.js";
 export function renderHeader() {
   let name;
   axios
@@ -32,9 +32,9 @@ function setHeaderHTML(name) {
   //   .getElementById("notification")
   //   .addEventListener("click", () => renderNotifacation());
 
-  // document
-  //   .getElementById("friendsList")
-  //   .addEventListener("click", () => renderAddFriends());
+  document
+    .getElementById("addFriends")
+    .addEventListener("click", () => renderAddFriends());
 
   document
     .getElementById("logout")
