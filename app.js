@@ -10,6 +10,19 @@ app.use("/", express.static("client"));
 app.use("/css", express.static("client/css"));
 app.use("/js", express.static("client/js"));
 
+require("dotenv").config();
+const expressSession = require("express-session");
+const MongoStore = require("connect-mongo");
+app.use(
+  expressSession({
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_DB_CONNECTION_STRING,
+      dbName: "project3",
+    }),
+    secret: process.env.EXPRESS_SESSION_SECRET_KEY,
+  })
+);
+
 const logingApi = require("./client/controllers/session");
 const signUpApi = require("./client/controllers/users");
 
