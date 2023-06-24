@@ -27,13 +27,13 @@ function setHeaderHTML(name) {
       </ul>
       `;
 
-  document
-    .getElementById("notification")
-    .addEventListener("click", () => renderNotifacation());
+  // document
+  //   .getElementById("notification")
+  //   .addEventListener("click", () => renderNotifacation());
 
-  document
-    .getElementById("friendsList")
-    .addEventListener("click", () => renderAddFriends());
+  // document
+  //   .getElementById("friendsList")
+  //   .addEventListener("click", () => renderAddFriends());
 
   document
     .getElementById("logout")
@@ -50,13 +50,13 @@ function setSideBar() {
     </ul>
       `;
 
-  document
-    .getElementById("selectMonth")
-    .addEventListener("click", () => renderMonth());
+  // document
+  //   .getElementById("selectMonth")
+  //   .addEventListener("click", () => renderMonth());
 
-  document
-    .getElementById("friendsList")
-    .addEventListener("click", () => renderFriendsList());
+  // document
+  //   .getElementById("friendsList")
+  //   .addEventListener("click", () => renderFriendsList());
 
   document
     .getElementById("addEvents")
