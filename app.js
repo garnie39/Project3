@@ -31,7 +31,7 @@ app.use("/api", logingApi);
 
 app.use("/api", signUpApi);
 
-app.use("/api", eventApi);
+app.use("/api/events", eventApi);
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
