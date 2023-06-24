@@ -6,13 +6,15 @@ const mongoClient = new MongoClient(process.env.MONGO_DB_CONNECTION_STRING);
 let eventsCollection;
 
 // initialise DB
-mongoClient.connect().then(() => {
+mongoClient.connect()
+  .then(() => {
     const db = mongoClient.db("project3");
     eventsCollection = db.collection("eventsList");
     console.log("Connected to MongoDB eventsList");
-}).catch((error) => {
-        console.log("Failed to connect to MongoDB Atlas:", error);
-});
+  })
+  .catch((error) => {
+    console.log("Failed to connect to MongoDB Atlas:", error);
+  });
 
 
 // GET events
