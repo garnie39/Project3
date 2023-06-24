@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const { getUserCollection } = require("../database/database");
 
 router.get("/login", (request, response) => {
-  if (request.session.email) {
+  if (request.session.username) {
     response.json(req.session);
   } else {
     response.status(400).json({ message: "User is not logged in" });

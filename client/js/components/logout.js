@@ -1,7 +1,7 @@
-import { renderFrontPage } from "./frontPage";
+import { renderFrontPage } from "./frontPage.js";
 
 export function renderLogout() {
-  axios.delete("/login").then((_) => {
+  axios.delete("/api/login").then((_) => {
     renderFrontPage();
   });
 }

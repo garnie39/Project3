@@ -1,17 +1,18 @@
-import { renderAddEvent } from "./addEvent";
-import { renderLogout } from "./logout";
+import { renderAddEvent } from "./addEvent.js";
+import { renderLogout } from "./logout.js";
 
 export function renderHeader() {
   let name;
   axios
-    .get("/api/session")
+    .get("/api/login")
     .then((response) => {
       name = response.data.username;
+      console.log(name)
       setHeaderHTML(name);
       setSideBar();
     })
     .catch((error) => {
-      setHeaderHTML(undefined);
+      setHeaderHTML(name);
     });
 }
 
