@@ -7,12 +7,10 @@ export const renderAddFriends = () => {
     const addFriendForm = document.createElement("form");
     addFriendForm.innerHTML = `
       <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required>
+      <input type="text" id="username" name="username" >
       <div id="allUsers" style="overflow:scroll; height:400px;"></div>
   
-      <p id="loginError"></p>
   
-      <input id="submitBtn" type="submit">
     `;
     addFriendDialog.appendChild(addFriendForm);
   

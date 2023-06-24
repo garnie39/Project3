@@ -5,14 +5,15 @@ export function renderProfile() {
   page.replaceChildren(container);
 
   container.innerHTML = `
-  <div >
-  <header>
+  <div id="calendar-body">
+  <div class="wrapper">
+  <div id="calendar-Header">
   <p class="current-date"></p>
   <div class="icons">
-    <span id="prev" class="material-symbols-rounded">left</span>
-    <span id="next" class="material-symbols-rounded">right</span>
+    <span id="prev"><</span>
+    <span id="next">></span>
   </div>
-</header>
+</div>
 <div class="calendar">
   <ul class="weeks">
     <li>Sun</li>
@@ -26,7 +27,7 @@ export function renderProfile() {
   <ul class="days"></ul>
 </div>
     </div>
-    
+    </div>
   `
   const daysTag = document.querySelector(".days"),
   currentDate = document.querySelector(".current-date"),
