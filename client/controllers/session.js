@@ -26,6 +26,7 @@ router.post("/login", (request, response) => {
       response.status(401).json({ error: "Invalid username or password" });
       return;
     }
+
     request.session.username = user.username;
     response.json({ message: "User login was successsful" });
   });
