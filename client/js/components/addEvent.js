@@ -1,11 +1,10 @@
-
-
 export const renderAddEvent = () => {
   const page = document.getElementById("page");
-  const addEventDialog = document.getElementById("dialog");
+  const addEventDialog = document.createElement("dialog");
   const form = document.createElement("form");
-
   addEventDialog.className = "addEventDialog";
+  page.appendChild(addEventDialog);
+  addEventDialog.showModal();
   form.className = "addEventForm";
 
   form.innerHTML = `
@@ -13,7 +12,7 @@ export const renderAddEvent = () => {
     <input type="text" name="eventname" id="eventname" required/>
 
     <label for="startdate">Start date:</label>
-    <input type="date" name="startdate" id="startdate" required/>
+    <input type="date" name="startdate" id="startdate" required/><br>
 
     <label for="enddate">End date:</label>
     <input type="date" name="enddate" id="enddate" required/>
@@ -47,7 +46,8 @@ export const renderAddEvent = () => {
       invite: formData.get("invite"),
     };
 
-    axios.post("/api/events", data)
+    axios
+      .post("/api/events", data)
       .then((_) => {
         fetchEvents();
       })
@@ -60,12 +60,12 @@ export const renderAddEvent = () => {
   addEventDialog.addEventListener("open", () => {
     fetchEvents();
   });
-  page.appendChild(addEventDialog);
 };
 
 // fetches events from server and render them on the page
 const fetchEvents = () => {
-  axios.get("/api/events")
+  axios
+    .get("/api/events")
     .then((response) => {
       const events = response.data;
       renderEvents(events);
