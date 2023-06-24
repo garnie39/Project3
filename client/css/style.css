@@ -151,3 +151,125 @@ body {
   color: rgb(255, 255, 255);
   background-color: rgb(74, 96, 110);
 }
+
+.header > #navList {
+  grid-area: header;
+  border-bottom: 3px solid rgb(74, 96, 110);
+  margin: 0;
+  padding: 20px;
+  list-style: none;
+  display: grid;
+  grid-template-areas: "welcome spa spa spa spa spa notice addFriend logout";
+  gap: 10px;
+  height: 80px;
+}
+
+#welcome {
+  grid-area: welcome;
+  font-family: "Pacifico", cursive;
+  margin: 0;
+  font-size: 50px;
+  animation-name: header;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+@keyframes header {
+  from {
+    color: rgb(47, 134, 255);
+  }
+  to {
+    color: rgb(255, 47, 123);
+  }
+}
+
+#space {
+  grid-area: spa;
+  margin: 0;
+  padding: 20px;
+}
+#navList > li {
+  margin: 0;
+  padding: 0;
+  gap: 10px;
+  justify-self: flex-end;
+}
+.notification {
+  grid-area: notice;
+  color: rgb(74, 96, 110);
+  margin-top: 25px;
+}
+
+.addFriends {
+  grid-area: addFriend;
+  color: rgb(74, 96, 110);
+  margin-top: 25px;
+}
+
+.logout {
+  grid-area: logout;
+  color: rgb(74, 96, 110);
+  margin-top: 25px;
+}
+
+#sideNavList {
+  list-style: none;
+  background-color: rgb(74, 96, 110);
+  height: 700px;
+  width: 40px;
+  margin: 0;
+  padding: 20px;
+  gap: 30px;
+}
+
+.friendsList {
+  color: aliceblue;
+  align-self: center;
+  padding-bottom: 10px;
+}
+
+.addEvent {
+  color: aliceblue;
+  align-self: center;
+  padding-bottom: 10px;
+}
+
+.addEventDialog {
+  border: 0;
+  border-radius: 30px;
+  font-family: "Dosis", sans-serif;
+  font-size: 30px;
+  height: 400px;
+  width: 200px;
+  gap: 5px;
+  display: grid;
+  grid-template-areas:
+    "form"
+    "closeBtn3";
+  text-align: center;
+  color: rgb(74, 96, 110);
+}
+
+.addEventDialog > input[name="startdate"] {
+  width: 150px;
+}
+
+.closeAddEventBtn {
+  grid-area: closeBtn3;
+}
+
+#submitEventBtn {
+  border: 0;
+  border-radius: 20px;
+  align-content: center;
+  height: 30px;
+  width: 80px;
+  margin-top: 10px;
+  font-family: "Dosis", sans-serif;
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(74, 96, 110);
+}

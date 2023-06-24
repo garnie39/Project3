@@ -45,8 +45,8 @@ export const renderLogin = () => {
       password: formData.get("password"),
     };
 
-    axios.post("/api/login", userInfo)
-    .then(() => {
+    axios.post("/api/login", userInfo).then(() => {
+
       renderHeader();
       renderProfile();
     })

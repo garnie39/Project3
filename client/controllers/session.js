@@ -14,7 +14,6 @@ router.get("/login", (request, response) => {
 
 router.post("/login", (request, response) => {
   let user;
-  console.log(user);
   const userCollection = getUserCollection();
 
   userCollection.findOne({ username: request.body.username }).then((result) => {

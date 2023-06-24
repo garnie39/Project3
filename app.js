@@ -25,10 +25,13 @@ app.use(
 
 const logingApi = require("./client/controllers/session");
 const signUpApi = require("./client/controllers/users");
+const eventApi = require("./client/controllers/events")
 
 app.use("/api", logingApi);
 
 app.use("/api", signUpApi);
+
+app.use("/api/events", eventApi);
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
