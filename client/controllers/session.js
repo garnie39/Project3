@@ -5,7 +5,7 @@ const { getUserCollection } = require("../database/database");
 
 router.get("/login", (request, response) => {
   if (request.session.username) {
-    response.json(req.session);
+    response.json(request.session);
   } else {
     response.status(400).json({ message: "User is not logged in" });
     return;
@@ -26,7 +26,7 @@ router.post("/login", (request, response) => {
       response.status(401).json({ error: "Invalid username or password" });
       return;
     }
-
+    request.session.username = user.username;
     response.json({ message: "User login was successsful" });
   });
 });

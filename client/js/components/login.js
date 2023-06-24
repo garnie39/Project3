@@ -1,5 +1,5 @@
-import {renderProfile} from "./profile.js"
-import {renderHeader} from "./header.js"
+import { renderProfile } from "./profile.js";
+import { renderHeader } from "./header.js";
 
 export const renderLogin = () => {
   const page = document.getElementById("page");
@@ -44,6 +44,7 @@ export const renderLogin = () => {
     };
 
     axios.post("/api/login", userInfo).then(() => {
+      console.log(userInfo);
       renderHeader();
       renderProfile();
     });

@@ -5,14 +5,14 @@ export function renderHeader() {
   let name;
   axios
     .get("/api/login")
-    .then((response) => {
-      name = response.data.username;
-      console.log(name)
+    .then((res) => {
+      name = res.data.username;
+      console.log(name);
       setHeaderHTML(name);
       setSideBar();
     })
     .catch((error) => {
-      setHeaderHTML(name);
+      setHeaderHTML(undefined);
     });
 }
 
