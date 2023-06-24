@@ -28,7 +28,6 @@ router.post("/login", (request, response) => {
     }
 
     request.session.username = user.username;
-
     response.json({ message: "User login was successsful" });
   });
 });

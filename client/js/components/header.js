@@ -11,7 +11,6 @@ export function renderHeader() {
       setSideBar();
     })
     .catch((error) => {
-      setSideBar();
       setHeaderHTML(undefined);
     });
 }
