@@ -14,7 +14,6 @@ router.get("/login", (request, response) => {
 
 router.post("/login", (request, response) => {
   let user;
-  console.log(user);
   const userCollection = getUserCollection();
 
   userCollection.findOne({ username: request.body.username }).then((result) => {
@@ -26,7 +25,6 @@ router.post("/login", (request, response) => {
       response.status(401).json({ error: "Invalid username or password" });
       return;
     }
-
     request.session.username = user.username;
     response.json({ message: "User login was successsful" });
   });

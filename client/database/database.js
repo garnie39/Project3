@@ -5,6 +5,7 @@ const mongoClient = new MongoClient(process.env.MONGO_DB_CONNECTION_STRING);
 
 let testCollection;
 let userCollection;
+let eventCollection;
 
 const connectToMongoDb = async () => {
   try {
@@ -14,6 +15,7 @@ const connectToMongoDb = async () => {
         const db = mongoClient.db("project3");
         testCollection = db.collection("test");
         userCollection = db.collection("users");
+        eventCollection = db.collection("eventsList");
       })
       .catch((error) => {
         console.log(error);
@@ -25,9 +27,11 @@ const connectToMongoDb = async () => {
 
 const getUserCollection = () => userCollection;
 const getTestCollection = () => testCollection;
+const getEventCollection = () => eventCollection;
 
 module.exports = {
   connectToMongoDb,
   getTestCollection,
   getUserCollection,
+  getEventCollection,
 };

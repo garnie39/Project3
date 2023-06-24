@@ -236,3 +236,40 @@ body {
   align-self: center;
   padding-bottom: 10px;
 }
+
+.addEventDialog {
+  border: 0;
+  border-radius: 30px;
+  font-family: "Dosis", sans-serif;
+  font-size: 30px;
+  height: 400px;
+  width: 200px;
+  gap: 5px;
+  display: grid;
+  grid-template-areas:
+    "form"
+    "closeBtn3";
+  text-align: center;
+  color: rgb(74, 96, 110);
+}
+
+.addEventDialog > input[name="startdate"] {
+  width: 150px;
+}
+
+.closeAddEventBtn {
+  grid-area: closeBtn3;
+}
+
+#submitEventBtn {
+  border: 0;
+  border-radius: 20px;
+  align-content: center;
+  height: 30px;
+  width: 80px;
+  margin-top: 10px;
+  font-family: "Dosis", sans-serif;
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(74, 96, 110);
+}
