@@ -75,5 +75,20 @@ router.get("/allUsers", (req, res) => {
 });
 
 
+router.get("/usersFriendsList", (req, res) => {
+  const userCollection = getUserCollection();
+  userCollection
+    .find({}, {username: 1})
+    .toArray()
+    .then((response) => {
+      const username = response.map((users)=>
+        users.username
+      )
+      res.json({username:username})
+    });
+});
+
+
+
 
 module.exports = router;
