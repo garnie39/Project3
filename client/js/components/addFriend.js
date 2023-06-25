@@ -42,6 +42,8 @@ export const renderAddFriends = () => {
         usernameElement.innerHTML = username;
 
         allUsers.append(usernameElement, addFriendButton);
+
+        addFriendButton.addEventListener("click", () => {});
       });
     })
     .catch((error) => {

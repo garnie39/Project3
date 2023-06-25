@@ -20,20 +20,6 @@ router.post("/", (request, response) => {
   if (
     !request.body.eventname ||
     !request.body.startdate ||
-    !request.body.enddate ||
-    !request.body.userJoin
-  ) {
-    response.status(400).json({
-      message: "eventname, startdate, enddate and invite are mandatory fields",
-    });
-    return;
-  }
-  console.log(request.body);
-
-  if (
-    !request.body.eventname ||
-    !request.body.startdate ||
-    !request.body.userJoin ||
     !request.body.enddate
   ) {
     response.status(400).json({
@@ -41,9 +27,31 @@ router.post("/", (request, response) => {
     });
     return;
   }
-  eventsCollection.insertOne(request.body).then((_) => {
-    response.json();
-  });
+
+  if (
+    !request.body.eventname ||
+    !request.body.startdate ||
+    !request.body.enddate
+  ) {
+    response.status(400).json({
+      message: "eventname, startdate, enddate and invite are mandatory fields",
+    });
+    return;
+  }
+  eventsCollection
+    .insertOne({
+      username: request.body.username,
+      currentTime: request.body.timestamp,
+      eventName: request.body.eventname,
+      startDate: request.body.startdate,
+      endDate: request.body.enddate,
+      userJoin: request.body.userJoin,
+      user_input: request.body.userInput,
+    })
+    .then((_) => {
+      console.log(request.body);
+      response.json();
+    });
 });
 
 // DELETE event
