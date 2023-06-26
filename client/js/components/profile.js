@@ -24,7 +24,7 @@ export function renderProfile() {
     <li>Fri</li>
     <li>Sat</li>
   </ul>
-  <ul class="days"></ul>
+  <ul class="days" id="days"></ul>
 </div>
     </div>
     </div>
@@ -64,7 +64,7 @@ export function renderProfile() {
     let liTag = "";
 
     for (let i = firstDayofMonth; i > 0; i--) {
-      liTag += `<li ">${lastDateofLastMonth - i + 1}</li>`;
+      liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
     }
 
     for (let i = 1; i <= lastDateofMonth; i++) {
@@ -73,8 +73,8 @@ export function renderProfile() {
         currentMonth === new Date().getMonth() &&
         currentYear === new Date().getFullYear()
           ? "active"
-          : "";
-      liTag += `<li class="${isToday}">${i}</li>`;
+          : "n";
+      liTag += `<li class="${isToday}" id="${currentYear}/${currentMonth}/${i}">${i}</li>`;
     }
 
     for (let i = lastDayofMonth; i < 6; i++) {
@@ -97,6 +97,26 @@ export function renderProfile() {
         date = new Date();
       }
       renderCalendar();
+    });
+  });
+  axios.get("/api/login").then((res) => {
+    let user = res.data.username;
+
+    axios.get("/api/events").then((response) => {
+      const events = response.data;
+      const showEvents = events
+        .map((event) => {
+          if (event.username == user) {
+            return event;
+          }
+        })
+        .filter(Boolean);
+      for (let e of showEvents) {
+        const dateToMatch = e.startDate || e.startdate;
+        const toMatch = document.getElementById("days");
+        const divEvents = document.createElement("div");
+        const pEvent = document.createElement("p");
+      }
     });
   });
 }

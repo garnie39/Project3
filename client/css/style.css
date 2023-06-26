@@ -24,6 +24,7 @@ body {
   animation-direction: alternate-reverse;
   animation-timing-function: ease;
   animation-fill-mode: forwards;
+  width: 350px;
 }
 
 .logo {
@@ -178,6 +179,7 @@ body {
   animation-direction: alternate-reverse;
   animation-timing-function: ease;
   animation-fill-mode: forwards;
+  width: 500px;
 }
 
 @keyframes header {
@@ -199,6 +201,7 @@ body {
   padding: 0;
   gap: 10px;
   justify-self: flex-end, space-evenly;
+  width: 30px;
 }
 .notification {
   grid-area: notice;
