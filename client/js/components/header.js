@@ -1,7 +1,7 @@
 import { renderAddEvent } from "./addEvent.js";
 import { renderLogout } from "./logout.js";
 import { renderAddFriends } from "./addFriend.js";
-import { renderFriendsList } from "./friendList.js";
+import { renderFriendsList } from "./friendsList.js";
 export function renderHeader() {
   let name;
   axios
@@ -42,7 +42,6 @@ function setHeaderHTML(name) {
   //   .getElementById("notification")
   //   .addEventListener("click", () => renderNotifacation());
 
-
   document
     .getElementById("addFriends")
     .addEventListener("click", () => renderAddFriends());
@@ -56,8 +55,8 @@ function setSideBar() {
   const sideBar = document.getElementById("side_bar");
   sideBar.innerHTML = `
     <ul id="sideNavList">
-      <li><svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" fill="aliceblue" id="friendsList" class="friendsList" viewBox="0 0 16 16">
-      <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+      <li><svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" fill="currentColor" id="friendsList" class="friendsList" viewBox="0 0 16 16">
+      <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
     </svg></li>
       <li><svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" fill="aliceblue" id="addEvents" class="addEvent" viewBox="0 0 16 16">
       <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
