@@ -26,7 +26,7 @@ export const renderAddEvent = (user) => {
     <input type="date" name="timestamp" id="timestamp" hidden/>
 
     <label for="comment">Comment:</label>
-    <input type="text" name"comment" id="comment">
+    <input type="text" name="comment" id="comment" />
 
     <input id="submitEventBtn" type="submit">
     `;
