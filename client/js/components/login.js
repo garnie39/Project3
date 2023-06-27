@@ -45,16 +45,15 @@ export const renderLogin = () => {
       password: formData.get("password"),
     };
 
-    axios
-      .post("/api/login", userInfo)
-      .then(() => {
-        renderHeader();
-        renderProfile();
-      })
-      .catch((error) => {
-        const errorMessage = error.response.data.error;
-        const loginErrorElement = document.getElementById("loginError");
-        loginErrorElement.textContent = errorMessage;
-      });
+    axios.post("/api/login", userInfo).then(() => {
+
+      renderHeader();
+      renderProfile();
+    })
+    .catch((error) => {
+      const errorMessage = error.response.data.error;
+      const loginErrorElement = document.getElementById("loginError"); 
+      loginErrorElement.textContent = errorMessage;
+    });
   });
 };
