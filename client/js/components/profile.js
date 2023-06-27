@@ -111,6 +111,7 @@ export function renderProfile() {
           }
         })
         .filter(Boolean);
+      console.log(showEvents);
       for (let e of showEvents) {
         const dateToMatch = e.startDate || e.startdate;
         const toMatch = document.getElementById("days");
