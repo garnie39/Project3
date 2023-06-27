@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getUserCollection } = require("../database/database");
+const { getUserCollection, getFriendsListCollection, getMessageCollection } = require("../database/database");
 const bcrypt = require("bcrypt");
 
 // const userSignup = require("../controllers/signup");
@@ -75,20 +75,97 @@ router.get("/allUsers", (req, res) => {
 });
 
 
-router.get("/usersFriendsList", (req, res) => {
-  const userCollection = getUserCollection();
-  userCollection
-    .find({}, {username: 1})
-    .toArray()
-    .then((response) => {
-      const username = response.map((users)=>
-        users.username
-      )
-      res.json({username:username})
-    });
+router.post("/addFriend", (request, response) => {
+  const friendsListCollection = getFriendsListCollection();
+  const username = request.body.username;
+  const sessionUsername = request.session.username;
+
+  friendsListCollection
+    .findOne({ user: sessionUsername })
+    .then((result) => {
+      if (result) { 
+        const friendsArray = result.friends; 
+        if (friendsArray.includes(username)) {
+          response.status(400).json({ error: "Friend already exists" });
+        } else {
+          friendsArray.push(username); 
+          friendsListCollection
+            .updateOne(
+              { user: sessionUsername },
+              { $set: { friends: friendsArray } }
+            )
+            .then(() => {
+              response.json({ message: "Friend added successfully" });
+            })
+        }
+      } else {
+        friendsListCollection
+          .insertOne({
+            user: sessionUsername,
+            friends: [username], 
+          })
+          .then(() => {
+            response.json({ message: "Friend added successfully" });
+          })
+      }
+    })
 });
 
 
 
+
+router.get("/usersFriendsList", (req, res) => {
+  const friendsListCollection = getFriendsListCollection();
+  friendsListCollection
+    .findOne({ user: req.session.username })
+    .then((result) => {
+      if (result) {
+        const friends = result.friends;
+        res.json({ friends });
+      } else {
+        res.json({ friends: [] });
+      }
+    })
+});
+
+
+router.post("/message", (request, response)=>{
+  const messageCollection = getMessageCollection();
+  const sendMessageTextInput = request.body.sendMessageTextInput
+  const friend = request.body.friend
+  const sessionUsername = request.session.username
+  const users = [sessionUsername, friend];
+  const usersSorted = users.sort();
+  messageCollection.findOne({users: usersSorted})
+  .then((result)=>{
+    if(result){
+      return messageCollection.updateOne(
+        { users: usersSorted },
+        { $push: { message: sendMessageTextInput } }
+      );
+    } else {
+      return messageCollection.insertOne({
+        users: usersSorted,
+        message: [sendMessageTextInput]
+      });
+    }
+  })
+})
+
+
+
+router.get("/getMessages", (req, res) => {
+  const messageCollection = getMessageCollection();
+  messageCollection
+    .findOne({ users: req.session.username })
+    .then((result) => {
+      if (result) {
+        const message = result.message;
+        res.json({ message });
+      } else {
+        res.json({ message: [] });
+      }
+    })
+});
 
 module.exports = router;

@@ -1,3 +1,5 @@
+
+
 export const renderAddFriends = () => {
     const page = document.getElementById("page");
     const addFriendDialog = document.createElement("dialog");
@@ -28,9 +30,29 @@ export const renderAddFriends = () => {
           usernameElement.textContent = username;
           const addFriendButton = document.createElement("button")
           addFriendButton.textContent = "ADD FRIEND"
+          const errorMsg = document.createElement("p")
+          errorMsg.textContent = ''
+          addFriendButton.addEventListener("click", (event)=>{
+            event.preventDefault()
+            axios.post("/api/addFriend",{username: username})
+            .then((response)=>{
+              errorMsg.textContent = "user added"
+              setTimeout(()=>{errorMsg.textContent = ""},2000)
+              
+              console.log("user add as friend")
+            })
+            .catch((error)=>{
+              const err = error.response.data.error
+              errorMsg.textContent = err
+              setTimeout(()=>{errorMsg.textContent = ""},2000)
+             
+            })
+          })
           
           allUsers.appendChild(usernameElement);
           usernameElement.appendChild(addFriendButton)
+          usernameElement.appendChild(errorMsg)
+          
         });
       })
       .catch((error) => {
