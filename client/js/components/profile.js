@@ -113,7 +113,11 @@ export function renderProfile() {
           const abc = document.getElementById(`${dateToMatch}`);
           if (abc) {
             const pEvent = document.createElement("p");
-            pEvent.className = "eventList";
+            if (e.username == user) {
+              pEvent.className = "eventList";
+            } else {
+              pEvent.className = "someoneEventList";
+            }
             pEvent.textContent = e.eventname || e.eventName;
 
             pEvent.addEventListener("click", () => {
@@ -125,7 +129,7 @@ export function renderProfile() {
               eventDetail.showModal();
 
               eventDetail.innerHTML = `
-              <ul class="eventName" >Event name: ${e.eventname || e.eventName}
+              <ul class="eventName" >"${e.eventname || e.eventName}"
                 <li class="eventsDetail">Start Date: ${
                   e.startDate || e.startdate
                 }</li>
@@ -149,8 +153,8 @@ export function renderProfile() {
                 eventDetail.close();
                 page.removeChild(eventDetail);
               });
+              eventDetail.appendChild(closeEventDetailDialog);
             });
-
             abc.appendChild(pEvent);
           }
         }
