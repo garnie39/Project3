@@ -433,6 +433,7 @@ body {
   border-radius: 10px;
   border: 1px solid white;
   background-color: #f9e3a1;
+  min-height: 25px;
   min-width: 80px;
   text-overflow: wrap;
   text-align: center;
@@ -442,8 +443,8 @@ body {
 .eventDetailDialog {
   border: 0;
   border-radius: 30px;
-  height: 300px;
-  width: 300px;
+  min-height: 300px;
+  min-width: 300px;
   gap: 5px;
   color: rgb(74, 96, 110);
 }
