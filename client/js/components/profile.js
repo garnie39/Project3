@@ -97,7 +97,11 @@ export function renderProfile() {
         const events = response.data;
         const showEvents = events
           .map((event) => {
-            if (event.username == user) {
+            if (
+              event.username == user ||
+              event.userJoin == user ||
+              event.invite == user
+            ) {
               return event;
             }
           })
@@ -108,13 +112,46 @@ export function renderProfile() {
           console.log(dateToMatch);
           const abc = document.getElementById(`${dateToMatch}`);
           if (abc) {
-            const divEvents = document.createElement("div");
             const pEvent = document.createElement("p");
-
+            pEvent.className = "eventList";
             pEvent.textContent = e.eventname || e.eventName;
 
-            abc.appendChild(divEvents);
-            divEvents.appendChild(pEvent);
+            pEvent.addEventListener("click", () => {
+              const page = document.getElementById("page");
+              const eventDetail = document.createElement("dialog");
+              eventDetail.className = "eventDetailDialog";
+
+              page.appendChild(eventDetail);
+              eventDetail.showModal();
+
+              eventDetail.innerHTML = `
+              <ul class="eventName" >Event name: ${e.eventname || e.eventName}
+                <li class="eventsDetail">Start Date: ${
+                  e.startDate || e.startdate
+                }</li>
+                <li class="eventsDetail">End Date: ${
+                  e.endDate || e.enddate
+                }</li>
+                <li class="eventsDetail">Participant: ${
+                  e.invite || e.userJoin
+                }</li>
+                <li class="eventsDetail">Comment: ${e.user_input}</li>
+              </ul>
+
+              `;
+
+              const closeEventDetailDialog = document.createElement("p");
+              closeEventDetailDialog.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width=30px" height="30px" fill="currentColor" class="closeEventDetailDialog" viewBox="0 0 16 16">
+  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+</svg>`;
+              closeEventDetailDialog.addEventListener("click", () => {
+                eventDetail.close();
+                page.removeChild(eventDetail);
+              });
+            });
+
+            abc.appendChild(pEvent);
           }
         }
       });
