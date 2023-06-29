@@ -37,7 +37,8 @@ export const renderFriendsList = () => {
         messageButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" fill="currentColor" class="messageSend" viewBox="0 0 16 16">
         <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z"/>
       </svg>`;
-        messageButton.addEventListener("click",      (event) => {
+
+        messageButton.addEventListener("click", (event) => {
           event.preventDefault();
           const sendMessageDialog = document.createElement("dialog");
           page.appendChild(sendMessageDialog);
@@ -49,6 +50,15 @@ export const renderFriendsList = () => {
             <div id="messageList" style="overflow:scroll; height:400px;"></div>
             <input type="text" id="sendMessageTextInput"> <input type="submit" value="Send">
           `;
+          const closeMessageChat = document.createElement("button");
+          closeMessageChat.textContent = "Close";
+          closeMessageChat.addEventListener("click", () => {
+            sendMessageDialog.close();
+            page.removeChild(sendMessageDialog);
+            clearInterval(fetchMessagesInterval);
+          });
+          sendMessageDialog.appendChild(closeMessageChat);
+
           sendMessageDialog.appendChild(sendMessage);
           sendMessage.addEventListener("submit", (event) => {
             event.preventDefault();
@@ -60,33 +70,40 @@ export const renderFriendsList = () => {
             });
             sendMessage.querySelector("#sendMessageTextInput").value = "";
           });
-          
-        
-        const fetchAndDisplayMessages = () => {
-          axios.get(`/api/getMessages?friend=${friend}`).then((response) => {
-            const messageList = document.getElementById("messageList");
-            const messages = response.data.message;
-            messageList.innerHTML = "";
 
-            messages.forEach((message) => {
-              const messageTextBox = document.createElement("p");
-              messageTextBox.textContent = message;
-              messageList.prepend(messageTextBox);
+          const fetchAndDisplayMessages = () => {
+            axios.get(`/api/getMessages?friend=${friend}`).then((response) => {
+              const messageList = document.getElementById("messageList");
+              const messages = response.data.message;
+              messageList.innerHTML = "";
+              function scrollToBottom() {
+                messageList.scrollTop = messageList.scrollHeight;
+              }
+
+              messages.forEach((message) => {
+                const messageTextBox = document.createElement("p");
+                messageTextBox.textContent = message;
+                messageList.appendChild(messageTextBox);
+                
+              });
+              scrollToBottom();
             });
+          };
+
+          const fetchMessagesInterval = setInterval(fetchAndDisplayMessages, 2000);
+          fetchAndDisplayMessages();
+
+          closeMessageChat.addEventListener("click", () => {
+            clearInterval(fetchMessagesInterval);
           });
-        };
 
-        fetchAndDisplayMessages();
+        });
 
-        setInterval(fetchAndDisplayMessages, 2000);
+        allUsers.appendChild(usernameElement);
+        usernameElement.appendChild(messageButton);
       });
-      
-
-      allUsers.appendChild(usernameElement);
-      usernameElement.appendChild(messageButton);
+    })
+    .catch((error) => {
+      console.error("Failed to fetch user's friends:", error);
     });
-  })
-  .catch((error) => {
-    console.error("Failed to fetch user's friends:", error);
-  });
 };
