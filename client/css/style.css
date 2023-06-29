@@ -461,3 +461,8 @@ body {
   list-style: none;
   color: rgb(74, 96, 110);
 }
+
+
+.session-user-message {
+  text-align: end;
+}
