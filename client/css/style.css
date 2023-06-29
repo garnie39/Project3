@@ -289,9 +289,15 @@ body {
   width: 300px;
   display: grid;
   grid-template-areas:
-    "closeBtn4"
-    "form";
+    "form"
+    "closeBtn4";
   color: rgb(74, 96, 110);
+}
+
+#closeAddFriendBtn {
+  grid-area: closeBtn4;
+  justify-content: flex-end;
+  margin: 0;
 }
 
 .addFriendDialog p {
@@ -306,16 +312,15 @@ body {
 }
 
 #allUsers p {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column: auto;
   text-align: left;
+  align-content: center;
   font-size: 30px;
   width: 150px;
   margin: 0;
-}
-
-#closeAddFriendBtn {
-  grid-area: closeBtn4;
-  place-items: end;
-  margin: 0;
+  padding: 5px;
 }
 
 .addFriendDialog form {
