@@ -1,15 +1,33 @@
 # Project 3: Catchy Calender
 
-[Manage your schedule](https://project-3-bc1x.onrender.com)
+[Catchy Calender](https://project-3-bc1x.onrender.com) is a web application that allows users to create events, invite people, and manage availability. It also features a live chat and the ability to add friends. This project was developed for our General Assembly, Software Engineer class.
 
-## Project Description
+## Technologies Used
 
-### Welcome Page with button for user to choose between sign up or log in:
-![alt text](https://github.com/garnie39/Project3/blob/main/images/frontpage.png?raw=true)
-### Sign Up
-![alt text](https://github.com/garnie39/Project3/blob/main/images/signup.png?raw=true)
-### Log in
-![alt text](https://github.com/garnie39/Project3/blob/main/images/login.png?raw=true)
+- HTML
+- CSS
+- JavaScript
+- Express.js
+- Node.js
+- MongoDB
+
+## Features
+
+1. Event Creation: Users can create events by providing the event name, start date, end date, and inviting people to the event.
+2. Availability Management: Invited people can specify their availability for the event by selecting the days they are available.
+3. Live Chat: The application includes a live chat feature where participants can communicate with each other in real-time.
+4. Friend Management: Users can add friends to their network, allowing for easier event invitations and communication.
+
+
+## Usage
+
+1. Create an account or log in to an existing account.
+2. Create event by providing the event name, start date, end date, and invite participants.
+3. Manage your friend list by adding or removing friends to facilitate easier event invitations and communication.
+4. Use the live chat feature to communicate with other event participants in real-time.
+
+
+
 
 This is the [Express](https://expressjs.com) [Hello world](https://expressjs.com/en/starter/hello-world.html) example on [Render](https://render.com).
 
