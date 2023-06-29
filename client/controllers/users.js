@@ -156,8 +156,13 @@ router.post("/message", (request, response)=>{
 
 router.get("/getMessages", (req, res) => {
   const messageCollection = getMessageCollection();
+  const friend = req.query.friend;
+  const sessionUsername = req.session.username;
+  const users = [sessionUsername, friend];
+  const usersSorted = users.sort();
+
   messageCollection
-    .findOne({ users: req.session.username })
+    .findOne({ users: usersSorted })
     .then((result) => {
       if (result) {
         const message = result.message;
@@ -166,6 +171,12 @@ router.get("/getMessages", (req, res) => {
         res.json({ message: [] });
       }
     })
+    .catch((error) => {
+      console.error("Failed to retrieve messages:", error);
+      res.status(500).json({ error: "Failed to retrieve messages" });
+    });
 });
+
+
 
 module.exports = router;
