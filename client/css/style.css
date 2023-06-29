@@ -4,13 +4,11 @@ body {
   background-color: rgb(243, 243, 243);
   font-family: "Dosis", sans-serif;
 }
-
 .frontPage {
   display: grid;
   justify-items: center;
   margin: 100px;
 }
-
 .appName {
   font-family: "Pacifico", cursive;
   font-display: center;
@@ -26,7 +24,6 @@ body {
   animation-fill-mode: forwards;
   width: 350px;
 }
-
 .logo {
   animation-name: logo;
   animation-duration: 3s;
@@ -35,7 +32,6 @@ body {
   animation-timing-function: ease;
   animation-fill-mode: forwards;
 }
-
 @keyframes logo {
   from {
     color: rgb(47, 134, 255);
@@ -44,13 +40,11 @@ body {
     color: rgb(255, 47, 123);
   }
 }
-
 .button {
   display: flex;
   justify-content: center;
   gap: 20px;
 }
-
 .signupBtn {
   font-family: "Dosis", sans-serif;
   font-size: 30px;
@@ -65,7 +59,6 @@ body {
   background-color: rgb(74, 96, 110);
   padding-bottom: 8px;
 }
-
 .loginBtn {
   font-family: "Dosis", sans-serif;
   font-size: 30px;
@@ -81,7 +74,6 @@ body {
   background-color: rgb(74, 96, 110);
   padding-bottom: 8px;
 }
-
 .loginDialog {
   border: 0;
   border-radius: 30px;
@@ -97,20 +89,16 @@ body {
   text-align: center;
   color: rgb(74, 96, 110);
 }
-
 .loginDialogForm {
   color: rgb(74, 96, 110);
   gap: 10px;
 }
-
 .closebtnD {
   margin: 10px;
 }
-
 .closeBtn {
   grid-area: closeBtn;
 }
-
 #submitBtn {
   border: 0;
   border-radius: 20px;
@@ -122,7 +110,6 @@ body {
   color: rgb(255, 255, 255);
   background-color: rgb(74, 96, 110);
 }
-
 .signupDialog {
   border: 0;
   border-radius: 30px;
@@ -138,11 +125,9 @@ body {
   text-align: center;
   color: rgb(74, 96, 110);
 }
-
 .signupCloseBtn {
   grid-area: closeBtn2;
 }
-
 #submitSignup {
   border: 0;
   border-radius: 20px;
@@ -155,7 +140,6 @@ body {
   color: rgb(255, 255, 255);
   background-color: rgb(74, 96, 110);
 }
-
 .header > #navList {
   grid-area: header;
   border-bottom: 3px solid rgb(74, 96, 110);
@@ -167,7 +151,6 @@ body {
   gap: 10px;
   height: 80px;
 }
-
 #welcome {
   grid-area: welcome;
   font-family: "Pacifico", cursive;
@@ -181,7 +164,6 @@ body {
   animation-fill-mode: forwards;
   width: 500px;
 }
-
 @keyframes header {
   from {
     color: rgb(47, 134, 255);
@@ -190,7 +172,6 @@ body {
     color: rgb(255, 47, 123);
   }
 }
-
 #space {
   grid-area: spa;
   margin: 0;
@@ -208,19 +189,16 @@ body {
   color: rgb(74, 96, 110);
   margin-top: 25px;
 }
-
 .addFriends {
   grid-area: addFriend;
   color: rgb(74, 96, 110);
   margin-top: 25px;
 }
-
 .logout {
   grid-area: logout;
   color: rgb(74, 96, 110);
   margin-top: 25px;
 }
-
 #sideNavList {
   position: absolute;
   list-style: none;
@@ -230,19 +208,16 @@ body {
   margin: 0;
   padding: 20px;
 }
-
 .friendsList {
   color: aliceblue;
   align-self: center;
   padding-bottom: 40px;
 }
-
 .addEvent {
   color: aliceblue;
   align-self: center;
   padding-bottom: 10px;
 }
-
 .addEventDialog {
   border: 0;
   border-radius: 30px;
@@ -258,15 +233,12 @@ body {
   text-align: center;
   color: rgb(74, 96, 110);
 }
-
 .addEventDialog > input[name="startdate"] {
   width: 150px;
 }
-
 .closeAddEventBtn {
   grid-area: closeBtn3;
 }
-
 #submitEventBtn {
   border: 0;
   border-radius: 20px;
@@ -279,7 +251,6 @@ body {
   color: rgb(255, 255, 255);
   background-color: rgb(74, 96, 110);
 }
-
 .addFriendDialog {
   border: 0;
   border-radius: 30px;
@@ -293,24 +264,20 @@ body {
     "closeBtn4";
   color: rgb(74, 96, 110);
 }
-
 #closeAddFriendBtn {
   grid-area: closeBtn4;
   justify-content: flex-end;
   margin: 0;
 }
-
 .addFriendDialog p {
   margin: 0;
   height: 40px;
   text-align: end;
   margin-bottom: 10px;
 }
-
 #allUsers {
   justify-content: flex-start;
 }
-
 #allUsers p {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -322,11 +289,9 @@ body {
   margin: 0;
   padding: 5px;
 }
-
 .addFriendDialog form {
   margin: 0;
 }
-
 .friendsListDialog {
   border: 0;
   border-radius: 30px;
@@ -340,13 +305,11 @@ body {
     "form";
   color: rgb(74, 96, 110);
 }
-
 .closeFriendsList {
   grid-area: closeBtn5;
   place-items: end;
   margin: 0;
 }
-
 .friendsListDialog p {
   margin: 0;
   height: 40px;
@@ -392,7 +355,6 @@ body {
   user-select: none;
   border-radius: 50%;
 }
-
 .icons span:last-child {
   margin-right: -10px;
 }
@@ -418,10 +380,9 @@ body {
 }
 .calendar .days {
   margin-bottom: 20px;
-  height: 600px;
   padding: 0;
+  height: 680px;
 }
-
 .calendar .weeks {
   padding: 0;
   margin: 0;
@@ -429,7 +390,6 @@ body {
   align-content: center;
   background-color: rgb(140, 191, 187);
 }
-
 .calendar .weeks li {
   font-weight: 500;
   cursor: default;
@@ -447,29 +407,57 @@ body {
   width: 165.5px;
   border: 0.5px solid #adc9cd;
   font-size: 1.07rem;
-  height: 130px;
+  min-height: 95px;
 }
-
 .days li.inactive {
   color: #aaa;
 }
 .days li.active {
   color: #fff;
+  background-color: rgb(172, 220, 216);
 }
-.days li::before {
-  position: absolute;
-  content: "";
-  left: 92.5%;
-  top: 12%;
-  height: 30px;
-  width: 30px;
-  z-index: -1;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
+.eventList {
+  margin: 4px;
+  min-height: 25px;
+  min-width: 80px;
+  text-overflow: wrap;
+  border-radius: 10px;
+  border: 1px solid white;
+  background-color: #d4aad6;
+  text-align: center;
+  font-size: 15px;
+  color: rgb(255, 255, 255);
 }
-.days li.active::before {
-  background: #ca5a81;
+.someoneEventList {
+  margin: 4px;
+  border-radius: 10px;
+  border: 1px solid white;
+  background-color: #f9e3a1;
+  min-height: 25px;
+  min-width: 80px;
+  text-overflow: wrap;
+  text-align: center;
+  font-size: 15px;
+  color: rgb(64, 56, 82);
 }
-.days li:not(.active):hover::before {
-  background: #f2f2f2;
+.eventDetailDialog {
+  border: 0;
+  border-radius: 30px;
+  min-height: 300px;
+  min-width: 300px;
+  gap: 5px;
+  color: rgb(74, 96, 110);
+}
+.eventName {
+  font-family: "Pacifico", cursive;
+  text-transform: uppercase;
+  font-size: 30px;
+  margin-bottom: 30px;
+  color: rgb(192, 61, 61);
+}
+.eventsDetail {
+  font-family: "Dosis", sans-serif;
+  font-size: 20px;
+  list-style: none;
+  color: rgb(74, 96, 110);
 }
