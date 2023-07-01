@@ -256,9 +256,10 @@ body {
   border-radius: 30px;
   font-family: "Dosis", sans-serif;
   font-size: 25px;
-  height: 500px;
-  width: 300px;
+  height: 350px;
+  min-width: 300px;
   display: grid;
+  justify-content: center;
   grid-template-areas:
     "form"
     "closeBtn4";
@@ -271,17 +272,16 @@ body {
 }
 .addFriendDialog p {
   margin: 0;
-  height: 40px;
   text-align: end;
   margin-bottom: 10px;
 }
 #allUsers {
   justify-content: flex-start;
+  min-height: 150px;
 }
 #allUsers p {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-column: auto;
   text-align: left;
   align-content: center;
   font-size: 30px;
@@ -291,18 +291,25 @@ body {
 }
 .addFriendDialog form {
   margin: 0;
+  min-height: 100px;
+}
+.addFriendErrorMsg {
+  text-align: center;
+  font-size: 30px;
+  color: rgb(156, 51, 124);
 }
 .friendsListDialog {
   border: 0;
   border-radius: 30px;
   font-family: "Dosis", sans-serif;
   font-size: 25px;
-  height: 500px;
-  width: 300px;
+  height: 350px;
+  min-width: 300px;
+  justify-content: center;
   display: grid;
   grid-template-areas:
-    "closeBtn5"
-    "form";
+    "form"
+    "closeBtn5";
   color: rgb(74, 96, 110);
 }
 .closeFriendsList {
@@ -310,11 +317,58 @@ body {
   place-items: end;
   margin: 0;
 }
+.friendsListDialog form {
+  margin: 0;
+  min-height: 100px;
+}
 .friendsListDialog p {
   margin: 0;
   height: 40px;
   text-align: end;
   margin-bottom: 10px;
+}
+.chatBox {
+  width: 560px;
+  height: 800px;
+  border: 0;
+  border-radius: 30px;
+  font-family: "Dosis", sans-serif;
+  justify-content: center;
+}
+.friend {
+  font-family: "Pacifico", cursive;
+  font-size: 30px;
+  margin: 50px;
+}
+#messageList {
+  background-color: #ffeccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 25px;
+}
+#sendMessageTextInput {
+  margin-left: 25px;
+  padding: 5px;
+  font-size: 20px;
+  width: 380px;
+  margin-top: 0;
+}
+#submitChat {
+  font-family: "Dosis", sans-serif;
+  font-size: 20px;
+  color: white;
+  place-self: center;
+  text-align: center;
+  border: 0;
+  border-radius: 8px;
+  height: 37px;
+  width: 120px;
+  cursor: pointer;
+  margin: 0;
+  background-color: rgb(74, 96, 110);
+}
+.closeChat {
+  margin: 10px;
 }
 
 /* calendar */
