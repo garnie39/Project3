@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { getEventCollection } = require("../database/database.js");
+const { ObjectId } = require("mongodb");
 
 // GET events
 router.get("/", (_, response) => {
@@ -56,12 +57,44 @@ router.post("/", (request, response) => {
 
 // DELETE event
 router.delete("/:id", (request, response) => {
-  const eventsCollection = getEventCollection();
-  eventsCollection
-    .deleteOne({ _id: new ObjectId(request.params.id) })
-    .then((_) => {
-      response.json();
-    });
+    const eventsCollection = getEventCollection();
+    const eventId = request.params.id; // Updated this line
+  
+    if (!ObjectId.isValid(eventId)) { // Updated this line
+      response.status(400).json({ message: "Invalid event ID" });
+      return;
+    }
+  
+    eventsCollection
+      .deleteOne({ _id: new ObjectId(eventId) })
+      .then((_) => {
+        response.json();
+      });
+  });
+
+// UPDATE event
+router.patch("/:id", (request, response) => {
+    try {
+      const eventsCollection = getEventCollection();
+      const eventId = request.params.id;
+  
+      if (!ObjectId.isValid(eventId)) {
+        response.status(400).json({ message: "Invalid event ID" });
+        return;
+      }
+  
+      const filter = { _id: new ObjectId(eventId) };
+      const update = { $set: request.body };
+  
+      eventsCollection.updateOne(filter, update).then(() => {
+        response.json({ message: "Event updated successfully" });
+      });
+    } catch (error) {
+      console.error("Error updating event:", error);
+      response.status(500).json({ message: "Internal Server Error" });
+    }
 });
+  
+
 
 module.exports = router;

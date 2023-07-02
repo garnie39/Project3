@@ -80,19 +80,36 @@ export const renderFriendsList = () => {
             axios.get(`/api/getMessages?friend=${friend}`).then((response) => {
               const messageList = document.getElementById("messageList");
               const messages = response.data.message;
+              const sessionUser = response.data.sessionUsername;
               messageList.innerHTML = "";
               function scrollToBottom() {
                 messageList.scrollTop = messageList.scrollHeight;
               }
-
+          
               messages.forEach((message) => {
+                const { user, text } = message; 
+          
                 const messageTextBox = document.createElement("p");
+
                 messageTextBox.textContent = message;
                 messageList.prepend(messageTextBox);
               });
+
+                if(user === sessionUser){
+                messageTextBox.textContent = `${text}`;
+                messageTextBox.style.textAlign = "end"
+                messageList.appendChild(messageTextBox);
+              }else{
+                messageTextBox.textContent = `${text}`;
+                messageList.appendChild(messageTextBox)
+              }
+              });
+          
+
               scrollToBottom();
             });
           };
+          
 
           const fetchMessagesInterval = setInterval(
             fetchAndDisplayMessages,
@@ -104,6 +121,7 @@ export const renderFriendsList = () => {
             clearInterval(fetchMessagesInterval);
           });
         });
+
         allUsers.appendChild(usernameElement);
         usernameElement.appendChild(messageButton);
       });
@@ -112,3 +130,4 @@ export const renderFriendsList = () => {
       console.error("Failed to fetch user's friends:", error);
     });
 };
+

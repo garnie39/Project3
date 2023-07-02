@@ -136,17 +136,21 @@ router.post("/message", (request, response)=>{
   const sessionUsername = request.session.username
   const users = [sessionUsername, friend];
   const usersSorted = users.sort();
+  const message = {
+    user: sessionUsername,
+    text: sendMessageTextInput
+  }
   messageCollection.findOne({users: usersSorted})
   .then((result)=>{
     if(result){
       return messageCollection.updateOne(
         { users: usersSorted },
-        { $push: { message: sendMessageTextInput } }
+        { $push: { message: message} }
       );
     } else {
       return messageCollection.insertOne({
         users: usersSorted,
-        message: [sendMessageTextInput]
+        message: [message] 
       });
     }
   })
@@ -166,7 +170,8 @@ router.get("/getMessages", (req, res) => {
     .then((result) => {
       if (result) {
         const message = result.message;
-        res.json({ message });
+        res.json({ message, sessionUsername });
+        // console.log(message.map((msg)=>msg.text))
       } else {
         res.json({ message: [] });
       }
