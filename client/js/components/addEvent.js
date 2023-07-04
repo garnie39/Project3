@@ -1,3 +1,5 @@
+import { renderProfile } from "./profile.js";
+
 export const renderAddEvent = (user) => {
   const page = document.getElementById("page");
   const addEventDialog = document.createElement("dialog");
@@ -64,8 +66,7 @@ export const renderAddEvent = (user) => {
         .then((_) => {
           // fetchEvents();
           console.log(data);
-          addEventDialog.close();
-          page.removeChild(addEventDialog);
+          renderProfile();
         })
         .catch((error) => {
           console.log("Error adding event:", error);

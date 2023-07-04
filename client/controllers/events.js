@@ -14,6 +14,21 @@ router.get("/", (_, response) => {
     });
 });
 
+router.get("/:id", (request, response) => {
+  const eventsCollection = getEventCollection();
+  const eventId = request.params.id;
+
+  if (!ObjectId.isValid(eventId)) {
+    // Updated this line
+    response.status(400).json({ message: "Invalid event ID" });
+    return;
+  }
+
+  eventsCollection.deleteOne({ _id: new ObjectId(eventId) }).then((_) => {
+    response.json();
+  });
+});
+
 // POST event
 router.post("/", (request, response) => {
   const eventsCollection = getEventCollection();
@@ -71,8 +86,31 @@ router.delete("/:id", (request, response) => {
   });
 });
 
-// UPDATE event
+// Edit event
 router.put("/:id", (request, response) => {
+  try {
+    const eventsCollection = getEventCollection();
+    const eventId = request.params.id;
+
+    if (!ObjectId.isValid(eventId)) {
+      response.status(400).json({ message: "Invalid event ID" });
+      return;
+    }
+
+    const filter = { _id: new ObjectId(eventId) };
+    const update = { $set: request.body };
+
+    eventsCollection.updateOne(filter, update).then(() => {
+      response.json({ message: "Event updated successfully" });
+    });
+  } catch (error) {
+    console.error("Error updating event:", error);
+    response.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+// UPDATE event
+router.patch("/:id", (request, response) => {
   try {
     const eventsCollection = getEventCollection();
     const eventId = request.params.id;

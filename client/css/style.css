@@ -324,7 +324,7 @@ body {
 .friendsListDialog p {
   margin: 0;
   height: 40px;
- 
+
   margin-bottom: 10px;
 }
 .chatBox {
@@ -470,7 +470,6 @@ body {
   background-color: rgb(172, 220, 216);
 }
 .eventList {
-  margin: 4px;
   min-height: 25px;
   min-width: 80px;
   text-overflow: wrap;
@@ -482,7 +481,6 @@ body {
   color: rgb(255, 255, 255);
 }
 .someoneEventList {
-  margin: 4px;
   border-radius: 10px;
   border: 1px solid white;
   background-color: #f9e3a1;
@@ -495,17 +493,18 @@ body {
 }
 .eventDetailDialog {
   border: 0;
+  align-content: center;
   border-radius: 30px;
   min-height: 300px;
-  min-width: 300px;
+  width: 350px;
   gap: 5px;
   color: rgb(74, 96, 110);
 }
 .eventName {
   font-family: "Pacifico", cursive;
   text-transform: uppercase;
-  font-size: 30px;
-  margin-bottom: 30px;
+  font-size: 24px;
+  margin-bottom: 20px;
   color: rgb(192, 61, 61);
 }
 .eventsDetail {
@@ -514,8 +513,18 @@ body {
   list-style: none;
   color: rgb(74, 96, 110);
 }
-
-
+#editBtn {
+  color: rgb(74, 96, 110);
+  margin-left: 140px;
+}
+#deleteBtn {
+  color: rgb(74, 96, 110);
+  margin-left: 10px;
+}
+#linkEventPage {
+  color: rgb(74, 96, 110);
+  margin-left: 160px;
+}
 .session-user-message {
   text-align: end;
 }
