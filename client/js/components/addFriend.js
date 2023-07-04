@@ -27,47 +27,53 @@ export const renderAddFriends = () => {
   addFriendDialog.append(addFriendForm, errorMsg, closeAddFriendBtn);
 
   axios
-    .get("/api/allUsers")
-    .then((response) => {
-      const allUserInfo = response.data;
-      const allUsers = document.getElementById("allUsers");
+    .get("/api/login")
+    .then((res) => {
+      let user = res.data.username;
+      axios.get("/api/allUsers").then((response) => {
+        const allUserInfo = response.data;
+        const allUsers = document.getElementById("allUsers");
 
-      if (typeof allUserInfo === "string") {
-        allUserInfo = JSON.parse(allUserInfo);
-      }
+        if (typeof allUserInfo === "string") {
+          allUserInfo = JSON.parse(allUserInfo);
+        }
 
-      allUserInfo.username.forEach((username) => {
-        const usernameElement = document.createElement("p");
-        usernameElement.textContent = username;
-        const addFriendButton = document.createElement("p");
-        addFriendButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" fill="currentColor" class="addFriend" viewBox="0 0 16 16">
+        allUserInfo.username.forEach((username) => {
+          const usernameElement = document.createElement("p");
+          const usernameToExclude = user;
+          usernameElement.textContent = username.replace(usernameToExclude, "");
+          const addFriendButton = document.createElement("p");
+          if (username != user) {
+            addFriendButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" fill="currentColor" class="addFriend" viewBox="0 0 16 16">
           <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
         </svg>`;
 
-        errorMsg.textContent = "";
-        addFriendButton.addEventListener("click", (event) => {
-          event.preventDefault();
-          axios
-            .post("/api/addFriend", { username: username })
-            .then((response) => {
-              errorMsg.textContent = "user added";
-              setTimeout(() => {
-                errorMsg.textContent = "";
-              }, 2000);
+            errorMsg.textContent = "";
+            addFriendButton.addEventListener("click", (event) => {
+              event.preventDefault();
+              axios
+                .post("/api/addFriend", { username: username })
+                .then((response) => {
+                  errorMsg.textContent = "user added";
+                  setTimeout(() => {
+                    errorMsg.textContent = "";
+                  }, 2000);
 
-              console.log("user add as friend");
-            })
-            .catch((error) => {
-              const err = error.response.data.error;
-              errorMsg.textContent = err;
-              setTimeout(() => {
-                errorMsg.textContent = "";
-              }, 2000);
+                  console.log("user add as friend");
+                })
+                .catch((error) => {
+                  const err = error.response.data.error;
+                  errorMsg.textContent = err;
+                  setTimeout(() => {
+                    errorMsg.textContent = "";
+                  }, 2000);
+                });
             });
-        });
 
-        allUsers.appendChild(usernameElement);
-        usernameElement.appendChild(addFriendButton);
+            allUsers.appendChild(usernameElement);
+            usernameElement.appendChild(addFriendButton);
+          }
+        });
       });
     })
     .catch((error) => {
