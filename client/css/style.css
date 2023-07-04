@@ -324,7 +324,7 @@ body {
 .friendsListDialog p {
   margin: 0;
   height: 40px;
-  text-align: end;
+ 
   margin-bottom: 10px;
 }
 .chatBox {
@@ -333,7 +333,6 @@ body {
   border: 0;
   border-radius: 30px;
   font-family: "Dosis", sans-serif;
-  justify-content: center;
 }
 .friend {
   font-family: "Pacifico", cursive;
