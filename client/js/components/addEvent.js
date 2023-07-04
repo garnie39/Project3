@@ -62,8 +62,10 @@ export const renderAddEvent = (user) => {
       axios
         .post("/api/events", data)
         .then((_) => {
-          fetchEvents();
+          // fetchEvents();
           console.log(data);
+          addEventDialog.close();
+          page.removeChild(addEventDialog);
         })
         .catch((error) => {
           console.log("Error adding event:", error);
@@ -72,9 +74,9 @@ export const renderAddEvent = (user) => {
   });
 
   // fetch and render the events when the dialog is opened
-  addEventDialog.addEventListener("open", () => {
-    fetchEvents();
-  });
+  // addEventDialog.addEventListener("open", () => {
+  //   fetchEvents();
+  // });
 };
 
 // fetches events from server and render them on the page
